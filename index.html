@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 90 Dias - Versão Premium</title>
+    <link rel="stylesheet" href="css/premium.css">
+</head>
+<body>
+    <!-- Background interativo -->
+    <div id="background-container" class="interactive-background"></div>
+    
+    <div class="container">
+        <header>
+            <h1><span class="highlight">NOSSO DESAFIO</span> SUA TRANSFORMAÇÃO.</h1>
+            <p>Um novo corpo em tempo recorde e sem sofrimentos.</p>
+            <img class="logo-topo" src="/image/logod-90.png">
+        </header>
+        
+        <nav>
+            <button class="nav-button active" onclick="showSection('dashboard')">Dashboard</button>
+            <button class="nav-button" onclick="showSection('registro')">Novo Registro</button>
+            <button class="nav-button" onclick="showSection('progresso')">Progresso</button>
+            <button class="nav-button" onclick="showSection('galeria')">Galeria</button>
+        </nav>
+        
+        <div id="dashboard" class="section active">
+            <div class="card">
+                <h2>Seu Progresso</h2>
+                <div id="day-counter" style="text-align: right; font-weight: bold; color: var(--primary-color);">Dia 1 de 90</div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>Água</h3>
+                        <p id="agua-media">0 ml</p>
+                        <span>média diária</span>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Sono</h3>
+                        <p id="sono-media">0</p>
+                        <span>qualidade média</span>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Dieta</h3>
+                        <p id="dieta-media">0%</p>
+                        <span>aderência média</span>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Dias Registrados</h3>
+                        <p id="dias-registrados">0</p>
+                        <span>de 90 dias</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Calendário do Desafio</h2>
+                <div class="calendar-header">
+                    <div>Dom</div>
+                    <div>Seg</div>
+                    <div>Ter</div>
+                    <div>Qua</div>
+                    <div>Qui</div>
+                    <div>Sex</div>
+                    <div>Sáb</div>
+                </div>
+                <div class="calendar" id="calendar-container">
+                    <!-- Calendário será gerado via JavaScript -->
+                </div>
+            </div>
+            
+            <div class="alert alert-info">
+                <strong>Dica:</strong> Cada dia é uma nova oportunidade para se aproximar do seu objetivo!
+            </div>
+            
+            <div class="alert alert-warning" id="weekend-alert" style="display: none;">
+                <strong>Alerta de Fim de Semana!</strong> Fique atenta! Os fins de semana podem ser desafiadores para manter a dieta. Planeje-se com antecedência!
+            </div>
+        </div>
+        
+        <div id="registro" class="section">
+            <div class="card">
+                <h2>Registro Diário</h2>
+                <div id="registro-data" style="text-align: right; margin-bottom: 15px;">
+                    <span id="data-atual">30/05/2025</span>
+                    <span id="dia-semana" style="margin-left: 10px; background-color: var(--secondary-color); color: white; padding: 5px 10px; border-radius: 20px; font-size: 14px;">Sexta-feira</span>
+                </div>
+                
+                <form id="form-registro">
+                    <div class="form-group">
+                        <label for="agua">Consumo de Água (ml):</label>
+                        <input type="number" id="agua" name="agua" min="0" step="100" placeholder="Ex: 2000">
+                        <div style="margin-top: 15px; display: flex; gap: 10px;">
+                            <button type="button" class="button" onclick="addWater(200)">+1 Copo (200ml)</button>
+                            <button type="button" class="button button-secondary" onclick="addWater(500)">+1 Garrafa (500ml)</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sono">Qualidade do Sono:</label>
+                        <select id="sono" name="sono">
+                            <option value="0">Selecione uma avaliação</option>
+                            <option value="1">1 - Muito ruim</option>
+                            <option value="2">2 - Ruim</option>
+                            <option value="3">3 - Regular</option>
+                            <option value="4">4 - Bom</option>
+                            <option value="5">5 - Excelente</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Aderência à Dieta:</label>
+                        <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px;">
+                            <label style="display: flex; align-items: center;">
+                                <input type="radio" name="dieta" value="100">
+                                <span style="margin-left: 8px; font-weight: 500;">100%</span>
+                            </label>
+                            <label style="display: flex; align-items: center;">
+                                <input type="radio" name="dieta" value="75">
+                                <span style="margin-left: 8px; font-weight: 500;">75%</span>
+                            </label>
+                            <label style="display: flex; align-items: center;">
+                                <input type="radio" name="dieta" value="50">
+                                <span style="margin-left: 8px; font-weight: 500;">50%</span>
+                            </label>
+                            <label style="display: flex; align-items: center;">
+                                <input type="radio" name="dieta" value="25">
+                                <span style="margin-left: 8px; font-weight: 500;">< 50%</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="observacoes">Observações do Dia:</label>
+                        <textarea id="observacoes" name="observacoes" rows="3" placeholder="Como você se sentiu hoje? Alguma dificuldade ou conquista?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="foto">Foto do Dia (opcional):</label>
+                        <input type="file" id="foto" name="foto" accept="image/*" onchange="previewPhoto(this)">
+                        <div class="photo-preview" id="photo-preview">
+                            <span>Prévia da foto</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 25px; display: flex; gap: 15px;">
+                        <button type="button" class="button" onclick="salvarRegistro()">Salvar Registro</button>
+                        <button type="button" class="button button-secondary" onclick="limparFormulario()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div id="progresso" class="section">
+            <div class="card">
+                <h2>Estatísticas Gerais</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>Dias Registrados</h3>
+                        <p id="dias-registrados-stats">0</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Dias Perfeitos</h3>
+                        <p id="dias-perfeitos">0</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Melhor Sequência</h3>
+                        <p id="melhor-sequencia">0 dias</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Progresso Total</h3>
+                        <p id="progresso-total">0%</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Exportar Dados</h2>
+                <p>Exporte seus dados para a planilha do Google Drive ou faça backup local.</p>
+                
+                <div class="export-options" style="margin-top: 25px; display: flex; flex-wrap: wrap; gap: 15px;">
+                    <button class="button" onclick="exportarParaPlanilha()">Exportar para Planilha</button>
+                    <button class="button button-secondary" onclick="exportarDadosLocal()">Fazer Backup Local</button>
+                </div>
+                
+                <div style="margin-top: 25px;">
+                    <a href="https://docs.google.com/spreadsheets/d/1s4clTbTO_5KezVfKwE4ze9Ov6lb55XAM-px_ax2r9g4/edit" target="_blank" class="button button-secondary" style="text-decoration: none; display: inline-block;">Abrir Planilha no Google Drive</a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="galeria" class="section">
+            <div class="card">
+                <h2>Galeria de Progresso</h2>
+                <div style="margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px;">
+                    <button class="button" onclick="filtrarFotos('all')">Todas</button>
+                    <button class="button button-secondary" onclick="filtrarFotos('recent')">Recentes</button>
+                    <button class="button button-secondary" onclick="filtrarFotos('oldest')">Mais Antigas</button>
+                </div>
+                
+                <div class="gallery" id="gallery-container">
+                    <!-- Fotos serão adicionadas dinamicamente via JavaScript -->
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--gray-color);">
+                        <p style="font-size: 18px; margin-bottom: 10px;">Nenhuma foto adicionada ainda.</p>
+                        <p>Registre seu progresso diário para visualizar aqui!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bloco de Provas Sociais -->
+        <div class="card">
+            <h2>Histórias de Sucesso</h2>
+            <p>Confira os resultados de quem já completou o desafio de 90 dias:</p>
+            <div id="testimonials-container"></div>
+        </div>
+        
+        <footer>
+            Desafio 90 Dias de Transformação &copy; 2025
+        </footer>
+    </div>
+    
+    <script src="js/app.js"></script>
+    <script src="js/premium.js"></script>
+</body>
+</html>
