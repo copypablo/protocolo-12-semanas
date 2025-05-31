@@ -135,14 +135,6 @@
                         <textarea id="observacoes" name="observacoes" rows="3" placeholder="Como você se sentiu hoje? Alguma dificuldade ou conquista?"></textarea>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="foto">Foto do Dia (opcional):</label>
-                        <input type="file" id="foto" name="foto" accept="image/*" onchange="previewPhoto(this)">
-                        <div class="photo-preview" id="photo-preview">
-                            <span>Prévia da foto</span>
-                        </div>
-                    </div>
-                    
                     <div style="margin-top: 25px; display: flex; gap: 15px;">
                         <button type="button" class="button" onclick="salvarRegistro()">Salvar Registro</button>
                         <button type="button" class="button button-secondary" onclick="limparFormulario()">Cancelar</button>
@@ -174,20 +166,6 @@
                 </div>
             </div>
             
-            <div class="card">
-                <h2>Exportar Dados</h2>
-                <p>Exporte seus dados para a planilha do Google Drive ou faça backup local.</p>
-                
-                <div class="export-options" style="margin-top: 25px; display: flex; flex-wrap: wrap; gap: 15px;">
-                    <button class="button" onclick="exportarParaPlanilha()">Exportar para Planilha</button>
-                    <button class="button button-secondary" onclick="exportarDadosLocal()">Fazer Backup Local</button>
-                </div>
-                
-                <div style="margin-top: 25px;">
-                    <a href="https://docs.google.com/spreadsheets/d/1s4clTbTO_5KezVfKwE4ze9Ov6lb55XAM-px_ax2r9g4/edit" target="_blank" class="button button-secondary" style="text-decoration: none; display: inline-block;">Abrir Planilha no Google Drive</a>
-                </div>
-            </div>
-        </div>
         
         <div id="galeria" class="section">
             <div class="card">
@@ -197,15 +175,6 @@
                     <button class="button button-secondary" onclick="filtrarFotos('recent')">Recentes</button>
                     <button class="button button-secondary" onclick="filtrarFotos('oldest')">Mais Antigas</button>
                 </div>
-                
-                <div class="gallery" id="gallery-container">
-                    <!-- Fotos serão adicionadas dinamicamente via JavaScript -->
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--gray-color);">
-                        <p style="font-size: 18px; margin-bottom: 10px;">Nenhuma foto adicionada ainda.</p>
-                        <p>Registre seu progresso diário para visualizar aqui!</p>
-                    </div>
-                </div>
-            </div>
         </div>
         
         <!-- Bloco de Provas Sociais -->
